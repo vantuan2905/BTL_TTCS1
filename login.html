@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="../style/style.css">
+        <script
+    src="https://code.jquery.com/jquery-3.3.1.js">
+</script>
+    <script>
+        $(document).ready(
+            function(){
+                $("#header").load("header.html");
+                $("#footer").load("footer.html");
+            }
+        )
+    </script>
+    </head>
+
+    <body background="./style/image/bg_login.jpg">
+        <div id="header" style="padding-bottom: 50px;"></div>
+        <div style="background-color:black;width:40%;margin:50px auto;padding:10px">
+        <div class="login_title">
+            <h1>Login & Sign Up</h1>
+        </div>
+        <div class="login">
+            <form action="">
+                <h3>Login to your account</h3>
+                <input type="text" name="username" placeholder="UserName">
+                <input type="password" name="password" placeholder="PassWord"> <br>
+                <input type="submit" value="submit" style="color:black">
+            </form>
+        </div>
+        </div>
+        <div id="footer"></div>
+    </body>
+</html>

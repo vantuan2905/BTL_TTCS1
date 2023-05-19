@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="../style/style.css">
+    </head>
+    <body>
+        
+        <%-include('header.html')%>
+        <%-include('homeBar.html')%>
+        <div style="">
+            <div style="width:20%;float:left"><%-include('navigation.html')%></div>
+            
+            <div class="content"  style="color:red;display:flex">
+                <% for(let i=0;i< ds_kitchen.length;i++){ %>
+                    <div class="flexbox">
+                        <img src="<%= ds_kitchen[i].url%>" style="width:100%;height:150px">
+                        <form action="/addCart" method="get">
+                            <input type="hidden" name="pages" value="kitchenPage">
+                            <input type="hidden" name="masp" value="<%= ds_kitchen[i].masp%>">
+                            <p style="text-align: center;color:black"><%= ds_kitchen[i].tensp%></p>
+                            <p style="text-align: center;color:black;font-size: 20px;font-weight: bold;">price:$<%= ds_kitchen[i].price%></p>
+                            <input type="submit" value="Add to cart" style="width:150px;background-color: red;padding:10px;text-align: center;margin:10px 50px">
+                        </form>
+                    </div>
+              <%}%>
+            </div>
+        </div>
+        <div style="clear:both">
+        <%-include('footer.html')%>
+    </div>
+    </body>
+</html>

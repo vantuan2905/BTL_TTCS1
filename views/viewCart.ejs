@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="../style/style.css">
+    </head>
+    <body style="">
+        <div class="big_box">
+            <div class="small_box">
+                <% let total=0%>
+                <% let id%>
+                <% let cs=0%>
+                <%let slbd=[]%>
+                <%for(let i=0;i< cart.length;i++){%>
+                    <% id=cart[i].masp%>
+                    <% slbd.push(cart[i].sl)%>
+                    <% total+=cart[i].price1 %>
+                <div class="mini_cart" style="color:black">
+                    <div style="color:black;width:250px"><%= cart[i].tensp+"      "%>|<%="       $"+cart[i].price%></div>
+                    <div style="width:60;text-align:center">
+                        <form action="/update_sl">
+                             <input type="hidden" name="masp" value="<%=cart[i].masp%>">
+                             <input type="number" oninput="update()" id="<%= id%>" name="sl" value="<%=cart[i].sl%>" style="width:30px;height:20px;color:black;text-align: center;">
+                        </form>
+                    </div>
+                    <div style="width:200px;text-align: center;">
+                        <form action="/delete_miniCart">
+                            <input type="hidden" name="masp" value="<%=cart[i].masp%>">
+                            <input type="submit" value="x" style="width:20px;height:20px;background-color: red;">
+                        </form>
+                    </div>
+                    <div style="color:black;font-weight: bold;font-size: 20px;">$<%=cart[i].price1%></div>
+                   
+                </div>
+                <hr>
+                <%}%>
+                <p style="color:black;font-size: 30px;">Total: <label>&nbsp;</label>$<%= total%></p> 
+                <form action="/quay_lai">
+                    <input type="submit" value="Return" style="color:black;padding:3px;margin:10px;background-color: gray;">
+                </form>
+            </div>
+        </div>
+
+    </body>
+    <script>
+        function update(){
+                let slht=[];
+                let slbd2="<%= slbd%>"
+                slbd2=slbd2.split(",")
+                let input=document.getElementsByName("sl");
+                for(let i=0;i<input.length;i++){
+                    slht.push(input[i].value);
+                }
+                
+                
+                for(let i=0;i<slht.length;i++){
+                    
+                    if(slbd2[i]!=slht[i]){
+                        
+                        input[i].form.submit();break;
+                    }
+                }
+                
+        }
+    </script>
+</html>

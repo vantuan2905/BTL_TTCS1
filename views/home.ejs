@@ -1,0 +1,30 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="../style/style.css">
+        <script
+    src="https://code.jquery.com/jquery-3.3.1.js">
+</script>
+   
+    </head>
+    <%- include('header.html')  %>
+   
+    <body background="../style/image/bg_login.jpg">
+        <div id="header" style="padding-bottom: 50px;"></div>
+        <div style="background-color:black;width:40%;margin:50px auto;padding:10px">
+        <div class="login_title">
+            <h1>Login & Sign Up</h1>
+        </div>
+        <div class="login">
+            <form action="/auth" method="post">
+                <h3>Login to your account</h3>
+                <input type="text" name="username" placeholder="UserName" style="color:black">
+                <input type="password" name="password" placeholder="PassWord" style="color:black"> <br>
+                <input type="submit" value="submit" style="color:black">
+            </form>
+        </div>
+        </div>
+        <%- include('footer.html')  %>
+    </body>
+</html>
