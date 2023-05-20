@@ -29,7 +29,7 @@ app.set("view engine","ejs")
 app.use("/style", express.static(__dirname + "/style"));
 app.use("/image", express.static(__dirname + "/style"));
 var bodyParser = require('body-parser');
-const { use } = require("bcrypt/promises");
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true})); 
 const storage = multer.diskStorage({
@@ -37,7 +37,7 @@ const storage = multer.diskStorage({
 		cb(null, './style/image');
 	},
   
-	// By default, multer removes file extensions so let's add them back
+
 	filename: function(req, file, cb) {
 		cb(null,file.originalname);
 	}
@@ -71,7 +71,7 @@ app.get('/search',(req,res)=>{
 	var key="%"+req.query.keySearch+"%";let a=[];
 	console.log(req.session.user)
 	con.query("select * from product where tensp like ?",[key],(err,result)=>{
-		console.log(result.length+"++++++++++")
+		
 		result.map(element=>{
 			a.push({
 				masp:element.masp,
@@ -113,7 +113,8 @@ app.get('/update_sl',(req,res)=>{
 		console.log("abcxyz");
 	})
 	let a=[]
-con.query("select product.masp,tensp,price,soluong,price*soluong as price1 from product inner join orders_detail where product.masp=orders_detail.masp and orders_detail.ma_orders=?",[sessionid],function(error,result,field){
+con.query("select product.masp,tensp,price,soluong,price*soluong as price1 from product inner join orders_detail where product.masp=orders_detail.masp and orders_detail.ma_orders=?"
+  ,[sessionid],function(error,result,field){
 	if(error) throw error;
 	result.map((element)=>{
 		a.push({
@@ -191,7 +192,7 @@ app.post('/auth',function(request, response) {
 	})
 	var username = request.body.username;
 	var pass = request.body.password;
-	console.log(request.session.views)
+
 	if (username && pass) {
 		con.query('SELECT * FROM users WHERE username = ? AND pass = ?', [username, pass], function(error, results, fields) {
 			if (results.length > 0) {
@@ -312,30 +313,16 @@ app.get('/addCart',(req,res)=>{
 	console.log(req.session.user)
 	var ordersid=req.session.user.ordersid;
 	var username=req.session.user.name;
-	
+
 	var state=req.session.user.state;
-	console.log(masp+"             ")
-	var tv="";
-	if(pages=="householdPage")
-		tv="household";
-		if(pages=="beveragePage")
-		tv="beverage";
-		if(pages=="petPage")
-		tv="petfood"
-		if(pages=="vegtablePage")
-		tv="vegetable"
-		if(pages=="kitchenPage")
-		tv="kitchen"
-	console.log(tv);
-	console.log(masp)
+
 	if(state==0){
 		req.session.user.state=1;
 		con.query("insert into orders value(?,?)",[ordersid,username] , function (err, data) {
 			if (err) {
-				// some error occured
+
 			} else {
-				console.log("success")
-				// successfully inserted into db
+				
 			}
 		})
 		
@@ -362,11 +349,11 @@ app.get('/addCart',(req,res)=>{
 					res.render(pages,{ds_veg:req.session.user.ds_veg});return;}
 				if(pages=="kitchenPage"){
 					res.render(pages,{ds_kitchen:req.session.user.ds_kitchen});return;}
-				console.log("updateeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
+
 			}
 		}
 	})
-	console.log("update======"+update);
+
 	if(update==0){
 	con.query("insert into orders_detail value(?,?,?)",[ordersid,masp,"1"] , function (err, data) {
 		if (err) {
@@ -376,8 +363,7 @@ app.get('/addCart',(req,res)=>{
 			// successfully inserted into db
 		}
 	})
-	console.log(pages+"-.-"+masp);
-	console.log(req.session.user.ds_household+" "+req.session.user.ds_beverage+" "+req.session.user.ds_kitchen+" ")
+
 	let a=[]
 	if(pages=="searchPage"){
 		res.render(pages,{ds_search:req.session.user.ds_search});return;};

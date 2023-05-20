@@ -8,7 +8,6 @@
             <div class="small_box">
                 <% let total=0%>
                 <% let id%>
-                <% let cs=0%>
                 <%let slbd=[]%>
                 <%for(let i=0;i< cart.length;i++){%>
                     <% id=cart[i].masp%>
@@ -28,12 +27,12 @@
                             <input type="submit" value="x" style="width:20px;height:20px;background-color: red;">
                         </form>
                     </div>
-                    <div style="color:black;font-weight: bold;font-size: 20px;">$<%=cart[i].price1%></div>
+                    <div style="color:black;font-weight: bold;font-size: 20px;">$<%= parseFloat(cart[i].price1).toFixed(1)%></div>
                    
                 </div>
                 <hr>
                 <%}%>
-                <p style="color:black;font-size: 30px;">Total: <label>&nbsp;</label>$<%= total%></p> 
+                <p style="color:black;font-size: 30px;">Total: <label>&nbsp;</label>$<%= parseFloat(total).toFixed(1)%></p> 
                 <form action="/quay_lai">
                     <input type="submit" value="Return" style="color:black;padding:3px;margin:10px;background-color: gray;">
                 </form>
